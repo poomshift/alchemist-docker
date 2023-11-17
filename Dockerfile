@@ -2,8 +2,6 @@
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
 ARG WEBUI_VERSION=v1.6.0
-ARG DREAMBOOTH_COMMIT=cf086c536b141fc522ff11f6cffc8b7b12da04b9
-ARG KOHYA_VERSION=v22.1.0
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -174,12 +172,6 @@ RUN wget https://huggingface.co/ckpt/ControlNet-v1-1/resolve/main/control_v11p_s
     wget https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-plus-face_sd15.bin && \
     wget https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-plus_sd15.bin 
 
-# Fix Tensorboard
-RUN source /venv/bin/activate && \
-    pip3 uninstall -y tensorboard tb-nightly && \
-    pip3 install tensorboard tensorflow && \
-    pip3 cache purge && \
-    deactivate
 
 # Copy Stable Diffusion Web UI config files
 COPY a1111/relauncher.py a1111/webui-user.sh a1111/config.json a1111/ui-config.json /stable-diffusion-webui/
