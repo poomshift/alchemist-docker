@@ -4,7 +4,7 @@
 #########################################################
 
 # Install directory without trailing slash
-install_dir="/workspace"
+#install_dir="/workspace"
 
 # Name of the subdirectory
 #clone_dir="stable-diffusion-webui"
