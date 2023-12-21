@@ -88,6 +88,7 @@ RUN python3 -m venv --system-site-packages /venv && \
 
 # Install the dependencies for the Automatic1111 Stable Diffusion Web UI
 COPY a1111/requirements.txt a1111/requirements_versions.txt ./
+COPY a1111/cache-sd-model.py a1111/install-automatic.py ./
 RUN source /venv/bin/activate && \
     python -m install-automatic --skip-torch-cuda-test && \
     deactivate
